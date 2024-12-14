@@ -1,0 +1,9 @@
+@if (edirTarea !== null) {
+    <div class="container d-flex flex-column">
+        <input type="text" [value]="edirTarea.getTitulo()" #titulo>
+        <input type="text" [value]="edirTarea.getDescripcion()" #descripcion/>
+        <button (click)="editarTarea(edirTarea.getId(), titulo.value, descripcion.value);">Editar</button>
+    </div>
+
+}
+

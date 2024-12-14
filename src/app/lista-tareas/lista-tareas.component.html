@@ -1,0 +1,31 @@
+<p>Tareas</p>
+<app-tarea (tareas)="obtenerTarea($event)" />
+<div class="container d-flex flex-column">
+  <table style="border: 2px solid white">
+    <thead>
+      <th style="border: 2px solid white">Tarea</th>
+      <th style="border: 2px solid white">Descripcion</th>
+      <th style="border: 2px solid white">editar</th>
+    </thead>
+    <tbody>
+      @for (tarea of tareas; track $index) {
+
+      <tr>
+        <td style="border: 2px solid white">
+          {{tarea.getTitulo()}}
+        </td>
+        <td style="border: 2px solid white">
+          {{ tarea.getDescripcion() }}
+        </td>
+        <td style="border: 2px solid white">
+          <button class="btn btn-warning" (click)="editarTarea(tarea.getId())">editar</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <div class="container">
+    <app-editar-tarea [edirTarea]="edirTarea" (tareaEditada)="tareaEditada($event)"/>
+  </div>
+</div>
+
