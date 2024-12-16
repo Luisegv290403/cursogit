@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TareaComponent, Tarea } from "./tarea/tarea.component";
 import { EditarTareaComponent } from "./editar-tarea/editar-tarea.component";
+import { AgregarTareaService } from '../agregar-tarea.service';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -15,27 +16,21 @@ export class ListaTareasComponent {
   
 
   tareas:Tarea[] = [];
-  
+
+  constructor(private tareaServices:AgregarTareaService){
+
+  }
   
   obtenerTarea(tarea: Tarea){
-    this.tarea = tarea;
-    this.tareas.push(this.tarea);
+    this.tareas = this.tareaServices.obtenerTarea(tarea); 
   }
   
   editarTarea(id:number){
-    this.tareas.forEach((tareas) => {
-      if(tareas.getId() == id){
-        this.edirTarea = tareas;
-      }  
-    });
+    this.edirTarea = this.tareaServices.editarTarea(id);
   }
+  
   tareaEditada(tarea2:Tarea){
-    this.tareas.forEach((tarea) => {
-      if(tarea.getId() == tarea2.getId()){
-        tarea.setTitulo(tarea2.getTitulo());
-        tarea.setDescripcion(tarea2.getDescripcion());
-      }
-    })
+    this.tareaServices.tareaEditada(tarea2);
   }
 
 }

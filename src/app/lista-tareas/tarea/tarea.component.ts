@@ -31,6 +31,9 @@ export class Tarea{
   private id:number = 0;
   private titulo:string;
   private descipcion:string;
+
+
+
   constructor(titulo:string, descripcion:string){
     this.titulo=titulo;
     this.descipcion = descripcion;
